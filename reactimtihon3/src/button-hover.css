@@ -1,0 +1,200 @@
+/* 
+  BUTTON HOVER EFFECTS
+  Global button hover styles for consistent UX
+*/
+
+/* Primary Action Buttons */
+button[class*="btn"],
+button[class*="button"],
+button[type="button"],
+button[type="submit"] {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Red Action Buttons */
+.btn-checkout,
+.btn-coupon,
+.send-button,
+.create-btn,
+.buy-btn,
+.remove-button {
+  transition: all 0.3s ease;
+}
+
+.btn-checkout:hover,
+.btn-coupon:hover,
+.send-button:hover,
+.create-btn:hover,
+.buy-btn:hover {
+  background-color: #c93c3c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Remove/Delete Buttons */
+.remove-button:hover,
+.remove-button:active {
+  background-color: #d63031;
+  opacity: 0.9;
+}
+
+/* Secondary Buttons */
+.btn-secondary,
+.btn-primary {
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #333;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:hover {
+  background: #f5f5f5;
+  border-color: #999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Border/Outline Buttons */
+.google-btn,
+.sizes button {
+  transition: all 0.3s ease;
+}
+
+.google-btn:hover {
+  background-color: #f9f9f9;
+  border-color: #999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sizes button:hover {
+  background: #f0f0f0;
+  border-color: #999;
+}
+
+.sizes .active:hover {
+  background: #c93c3c;
+  box-shadow: 0 2px 8px rgba(201, 60, 60, 0.3);
+}
+
+/* Favorite/Icon Buttons */
+.fav,
+.favorite-btn,
+.fav-btn,
+.icon-circle {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.fav:hover {
+  background: #f5f5f5;
+  border-color: #db4444;
+  color: #db4444;
+}
+
+.favorite-btn:hover,
+.icon-circle:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.fav-btn:hover {
+  transform: scale(1.2);
+}
+
+/* Quantity Buttons */
+.qty-btn {
+  transition: all 0.3s ease;
+}
+
+.qty-btn:hover {
+  background: #f5f5f5;
+  transform: scale(1.05);
+}
+
+.qty-btn:active {
+  transform: scale(0.95);
+}
+
+/* Subscribe/Newsletter Buttons */
+.subscribe-button {
+  transition: all 0.3s ease;
+}
+
+.subscribe-button:hover {
+  opacity: 0.7;
+  transform: scale(1.1);
+}
+
+/* Language Switcher */
+.lang-switcher button {
+  transition: all 0.3s ease;
+}
+
+.lang-switcher button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* View All / Navigation Buttons */
+.view-all-button,
+.buy-now-btn {
+  transition: all 0.3s ease;
+}
+
+.view-all-button:hover {
+  background-color: #c93c3c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.buy-now-btn:hover {
+  background-color: #00cc52;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 200, 82, 0.3);
+}
+
+/* Content/Link Buttons */
+.content button {
+  transition: all 0.3s ease;
+}
+
+.content button:hover {
+  opacity: 0.8;
+  color: #00FF66;
+}
+
+/* Add to Cart Button */
+.add-to-cart-btn {
+  transition: all 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
+}
+
+/* Action Buttons Group */
+.action-buttons-group button {
+  transition: all 0.2s ease;
+}
+
+.action-buttons-group button:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* Mobile Adjustments */
+@media (hover: none) and (pointer: coarse) {
+  button {
+    transform: scale(1) !important;
+  }
+
+  button:active {
+    transform: scale(0.95) !important;
+  }
+}

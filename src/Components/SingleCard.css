@@ -1,0 +1,120 @@
+.single-product-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 50px auto;
+    align-items: center;
+    justify-content: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+    align-items: flex-start;
+}
+
+.product-image-side {
+    width: 450px;
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.product-image-side img {
+    width: 100%;
+    height: 350px;
+    object-fit: contain;
+    padding: 40px;
+}
+
+.badge-discount {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: #DB4444; 
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.side-actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.action-btn {
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.black-cart-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.black-cart-btn:hover {
+    background-color: #333;
+}
+
+.product-details-side {
+    flex: 1;
+}
+
+.product-details-side h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+.product-description {
+    color: #7D8184;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.product-price-green {
+    color: #00FF66;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.xotira-label {
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.blue-add-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 10px;
+}
