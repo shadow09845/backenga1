@@ -11,30 +11,35 @@ export default function LanguageSwitcher(){
     return () => i18n.off('languageChanged', handler);
   }, []);
 
-  const change = (lng) => i18n.changeLanguage(lng);
+  const change = (lng) => {
+    i18n.changeLanguage(lng);
+    setLang(lng);
+  };
+
+  const languages = [
+    { code: 'en', name: 'English', flag: '🇬🇧' },
+    { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+    { code: 'uz', name: 'O\'zbek', flag: '🇺🇿' },
+    { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
+    { code: 'ar', name: 'العربية', flag: '🇸🇦' },
+    { code: 'zh', name: '中文', flag: '🇨🇳' },
+    { code: 'kk', name: 'Қазақша', flag: '🇰🇿' }
+  ];
 
   return (
-    <div className="lang-switcher" role="tablist" aria-label="Language selector">
-      <button
-        className={lang === 'en' ? 'active' : ''}
-        onClick={() => change('en')}
-        aria-pressed={lang === 'en'}
-        aria-label="English"
-      >EN</button>
-
-      <button
-        className={lang === 'ru' ? 'active' : ''}
-        onClick={() => change('ru')}
-        aria-pressed={lang === 'ru'}
-        aria-label="Russian"
-      >RU</button>
-
-      <button
-        className={lang === 'uz' ? 'active' : ''}
-        onClick={() => change('uz')}
-        aria-pressed={lang === 'uz'}
-        aria-label="Uzbek"
-      >UZ</button>
+    <div className="lang-selector-wrapper">
+      <select 
+        value={lang}
+        onChange={(e) => change(e.target.value)}
+        className="lang-select"
+        aria-label="Select language"
+      >
+        {languages.map(l => (
+          <option key={l.code} value={l.code}>
+            {l.flag} {l.name} ({l.code.toUpperCase()})
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

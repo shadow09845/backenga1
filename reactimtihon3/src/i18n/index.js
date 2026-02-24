@@ -5,6 +5,10 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import en from "../locales/en/translation.json";
 import ru from "../locales/ru/translation.json";
 import uz from "../locales/uzb/translation.json";
+import tr from "../locales/tr/translation.json";
+import ar from "../locales/ar/translation.json";
+import zh from "../locales/zh/translation.json";
+import kk from "../locales/kk/translation.json";
 
 i18n
   .use(LanguageDetector)
@@ -14,6 +18,10 @@ i18n
       en: { translation: en },
       ru: { translation: ru },
       uz: { translation: uz },
+      tr: { translation: tr },
+      ar: { translation: ar },
+      zh: { translation: zh },
+      kk: { translation: kk },
     },
     fallbackLng: "en",
     interpolation: { escapeValue: false },

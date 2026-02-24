@@ -33,3 +33,6 @@ const shopSlice = createSlice({
 
 export const { addToCart, toggleFavorite, removeFromCart } = shopSlice.actions;
 export default shopSlice.reducer;
+
+
+

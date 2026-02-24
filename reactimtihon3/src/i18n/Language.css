@@ -1,47 +1,212 @@
-.lang-switcher {
-  display: inline-flex;
-  align-items: center;
-  background: #f2f4f6;
-  padding: 6px;
-  gap: 6px;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,0.06);
+.lang-selector-wrapper {
+  display: inline-block;
+  position: relative;
+  animation: slideInDown 0.6s ease-out;
 }
 
-.lang-switcher button {
-  background: transparent;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 999px;
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+  }
+  50% {
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.lang-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  padding: 12px 45px 12px 16px;
+  border-radius: 60px;
   cursor: pointer;
-  font-weight: 600;
-  color: #555;
-  transition: all 0.22s ease;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 1px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 
+    0 8px 24px rgba(102, 126, 234, 0.3),
+    0 0 20px rgba(240, 147, 251, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  outline: none;
+  text-transform: uppercase;
+  position: relative;
+  background-image: 
+    linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23ffffff' d='M8 11L2 5h12z' stroke='%23ffffff' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 0, right 12px center;
+  background-size: 100% 100%, 18px 18px;
+  background-color: #667eea;
+  padding-right: 45px;
+  text-overflow: ellipsis;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.lang-switcher button:hover {
-  background: rgba(0,0,0,0.04);
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.lang-switcher button.active {
-  background: #ffffff;
-  color: #222;
-  box-shadow: 0 6px 18px rgba(23, 35, 50, 0.08);
-  transform: translateY(-1px);
+.lang-select:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 16px 40px rgba(102, 126, 234, 0.5),
+    0 0 30px rgba(240, 147, 251, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  letter-spacing: 1.2px;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.lang-select:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+.lang-select:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 3px;
+  box-shadow: 
+    0 20px 50px rgba(102, 126, 234, 0.6),
+    0 0 40px rgba(240, 147, 251, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.lang-select::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.lang-select option {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  color: #212529;
+  padding: 12px 16px;
+  font-weight: 700;
+  border: none;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  background-image: linear-gradient(120deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.lang-select option:hover {
+  background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+}
+
+.lang-select option:checked {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-weight: 900;
+  background-image: 
+    linear-gradient(135deg, #667eea 0%, #764ba2 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23ffffff' d='M13.5 2L6 10.5 2.5 7' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* Responsive tweaks */
 @media (max-width: 480px) {
-  .lang-switcher { padding: 4px; gap: 4px; }
-  .lang-switcher button { padding: 6px 8px; font-size: 12px; }
+  .lang-select {
+    padding: 10px 40px 10px 12px;
+    font-size: 12px;
+    border-radius: 45px;
+    letter-spacing: 0.5px;
+    box-shadow: 
+      0 6px 18px rgba(102, 126, 234, 0.25),
+      0 0 15px rgba(240, 147, 251, 0.15);
+  }
+  
+  .lang-select:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 
+      0 12px 30px rgba(102, 126, 234, 0.4),
+      0 0 25px rgba(240, 147, 251, 0.3);
+  }
 }
 
 @media (max-width: 768px) and (min-width: 481px) {
-  .lang-switcher { padding: 5px; gap: 6px; }
-  .lang-switcher button { padding: 7px 10px; font-size: 13px; }
+  .lang-select {
+    padding: 11px 42px 11px 14px;
+    font-size: 12px;
+    border-radius: 52px;
+    letter-spacing: 0.7px;
+  }
 }
 
 @media (min-width: 1025px) {
-  .lang-switcher { padding: 6px; }
-  .lang-switcher button { padding: 8px 12px; font-size: 14px; }
+  .lang-select {
+    padding: 12px 45px 12px 16px;
+    font-size: 13px;
+    border-radius: 60px;
+    letter-spacing: 1px;
+  }
+  
+  .lang-select:hover {
+    animation: glow 2s ease-in-out;
+  }
+}
+
+/* Additional effects */
+.lang-selector-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #667eea);
+  border-radius: 65px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  background-size: 300% 300%;
+  animation: borderShimmer 4s ease infinite;
+}
+
+@keyframes borderShimmer {
+  0% {
+    opacity: 0;
+    background-position: 0% 50%;
+  }
+  50% {
+    opacity: 0.3;
+    background-position: 100% 50%;
+  }
+  100% {
+    opacity: 0;
+    background-position: 200% 50%;
+  }
+}
+
+.lang-selector-wrapper:hover::before {
+  opacity: 0.6;
 }
