@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import { BsCart2 } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
+import { FiSun, FiMoon } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { useState } from 'react';
 import img4 from "../assets/Cart1.svg";
@@ -10,10 +11,12 @@ import img5 from "../assets/Wishlist.svg";
 import { cardlistData, recommendedCardData } from "../data/CardData";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../i18n/Languageswitcher";
+import { useTheme } from "../App";
 
 const Navbar = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
   const [accountOpen, setAccountOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -70,7 +73,15 @@ const Navbar = () => {
               placeholder={t("serch")}
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
-              style={{ width: '100%', padding: '8px 12px', borderRadius: '4px', border: '1px solid #ccc' }}
+              className="search-input"
+              style={{
+                width: '100%',
+                padding: '8px 12px',
+                borderRadius: '4px',
+                border: `1px solid ${theme === 'dark' ? '#444' : '#ccc'}`,
+                backgroundColor: theme === 'dark' ? '#2a2a2a' : '#fff',
+                color: theme === 'dark' ? '#fff' : '#000'
+              }}
             />
             
             {searchResults.length > 0 && (
@@ -79,8 +90,8 @@ const Navbar = () => {
                 top: '100%',
                 left: 0,
                 right: 0,
-                backgroundColor: 'white',
-                border: '1px solid #ccc',
+                backgroundColor: theme === 'dark' ? '#1e1e1e' : 'white',
+                border: `1px solid ${theme === 'dark' ? '#333' : '#ccc'}`,
                 borderRadius: '4px',
                 boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
                 zIndex: 101,
@@ -94,20 +105,21 @@ const Navbar = () => {
                     onClick={() => handleSelectProduct(result.id)}
                     style={{
                       padding: '10px 12px',
-                      borderBottom: '1px solid #f0f0f0',
+                      borderBottom: `1px solid ${theme === 'dark' ? '#333' : '#f0f0f0'}`,
                       cursor: 'pointer',
                       display: 'flex',
                       gap: '10px',
                       alignItems: 'center',
-                      transition: 'background-color 0.2s'
+                      transition: 'background-color 0.2s',
+                      color: theme === 'dark' ? '#fff' : '#000'
                     }}
-                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f9f9f9'}
-                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'white'}
+                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333' : '#f9f9f9'}
+                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1e1e1e' : 'white'}
                   >
                     <img src={result.img} alt={result.model} style={{ width: '40px', height: '40px', objectFit: 'cover' }} />
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontWeight: 'bold', fontSize: '14px' }}>{result.brand} {result.model}</div>
-                      <div style={{ fontSize: '12px', color: '#666' }}>ID: {result.id}</div>
+                      <div style={{ fontWeight: 'bold', fontSize: '14px', color: theme === 'dark' ? '#fff' : '#000' }}>{result.brand} {result.model}</div>
+                      <div style={{ fontSize: '12px', color: theme === 'dark' ? '#ccc' : '#666' }}>ID: {result.id}</div>
                     </div>
                     <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#e74c3c' }}>{result.price}</div>
                   </div>
@@ -163,6 +175,10 @@ const Navbar = () => {
               </div>
             )}
           </div>
+
+          <button className="theme-icon-button" onClick={toggleTheme}>
+            {theme === 'light' ? <FiSun size={22} /> : <FiMoon size={22} />}
+          </button>
 
         </div>
 

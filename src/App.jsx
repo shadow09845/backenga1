@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
-import { useState, useEffect } from 'react'; 
+import { useState, createContext, useEffect } from 'react'; 
 import Navbar from './Components/Navbar';
 import Home from './Pages/Home';
 import Contact from './Pages/Contact';
@@ -15,11 +15,27 @@ import Login from './Components/Login';
 
 import './App.css';
 
+// Theme Context
+const ThemeContext = createContext();
+
+// export const useTheme = () => useContext(ThemeContext);
+
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
+
+  useEffect(() => {
+    document.body.className = theme === 'dark' ? 'dark-theme' : '';
+  }, [theme]);
 
   const handleLogin = () => {
     localStorage.setItem('isLoggedIn', 'true');
@@ -30,41 +46,43 @@ function App() {
   const isLoginPage = location.pathname === '/';
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      
-      {isLoggedIn && !isLoginPage && <Navbar />}
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        
+        {isLoggedIn && !isLoginPage && <Navbar />}
 
-      <div style={{ flex: 1, width: '100%' }}>
-        <Routes>
-          
-          {isLoggedIn ? (
+        <div style={{ flex: 1, width: '100%' }}>
+          <Routes>
             
-            <>
-          <Route path="/" element={<Login onLogin={handleLogin} />} />
-            
-              <Route path="/home" element={<Home />} />
-              <Route path="/favorites" element={<Favorites />} />
-              <Route path="/like" element={<Favorites />} /> 
+            {isLoggedIn ? (
               
-              <Route path="/about" element={<About />} />    
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/servise" element={<Servise />} />
-              <Route path="/savtcha" element={<Savtcha />} />
-              <Route path="/addedcard" element={<AddedCard />} />
-              <Route path="/cardlist" element={<Cardlist />} />
-              <Route path="/singlecard/:id" element={<SingleCard />} />
+              <>
+            <Route path="/" element={<Login onLogin={handleLogin} />} />
               
-              <Route path="*" element={<Navigate to="/home" />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/favorites" element={<Favorites />} />
+                <Route path="/like" element={<Favorites />} /> 
+                
+                <Route path="/about" element={<About />} />    
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/servise" element={<Servise />} />
+                <Route path="/savtcha" element={<Savtcha />} />
+                <Route path="/addedcard" element={<AddedCard />} />
+                <Route path="/cardlist" element={<Cardlist />} />
+                <Route path="/singlecard/:id" element={<SingleCard />} />
+                
+                <Route path="*" element={<Navigate to="/home" />} />
 
-            </>
-          ) : (
-            <Route path="*" element={<Navigate to="/" />} />
-          )}
-        </Routes>
+              </>
+            ) : (
+              <Route path="*" element={<Navigate to="/" />} />
+            )}
+          </Routes>
+        </div>
+
+        {isLoggedIn && !isLoginPage && <Footer />}
       </div>
-
-      {isLoggedIn && !isLoginPage && <Footer />}
-    </div>
+    </ThemeContext.Provider>
   );
 }
 

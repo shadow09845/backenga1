@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import { BsCart2 } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
+import { FiSun, FiMoon } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { useState } from 'react';
 import img4 from "../assets/Cart1.svg";
@@ -10,10 +11,12 @@ import img5 from "../assets/Wishlist.svg";
 import { cardlistData, recommendedCardData } from "../data/CardData";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../i18n/Languageswitcher";
+import { useTheme } from "../App";
 
 const Navbar = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
   const [accountOpen, setAccountOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -51,9 +54,10 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <LanguageSwitcher />
+
       <div className="nav-container">
 
-        <h2 className="logo">{t("title")}</h2>
+        <h2 className="logo" onClick={toggleTheme}>{t("title")} {theme === 'light' ? <FiSun size={20} /> : <FiMoon size={20} />}</h2>
 
         <div className="nav-links">
           <Link to={"/"}></Link>
@@ -79,8 +83,8 @@ const Navbar = () => {
                 top: '100%',
                 left: 0,
                 right: 0,
-                backgroundColor: 'white',
-                border: '1px solid #ccc',
+                backgroundColor: theme === 'dark' ? '#1e1e1e' : 'white',
+                border: `1px solid ${theme === 'dark' ? '#333' : '#ccc'}`,
                 borderRadius: '4px',
                 boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
                 zIndex: 101,
@@ -101,8 +105,8 @@ const Navbar = () => {
                       alignItems: 'center',
                       transition: 'background-color 0.2s'
                     }}
-                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f9f9f9'}
-                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'white'}
+                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333' : '#f9f9f9'}
+                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1e1e1e' : 'white'}
                   >
                     <img src={result.img} alt={result.model} style={{ width: '40px', height: '40px', objectFit: 'cover' }} />
                     <div style={{ flex: 1 }}>
@@ -146,7 +150,8 @@ const Navbar = () => {
                 position: 'absolute',
                 top: '35px',
                 right: 0,
-                backgroundColor: 'white',
+                backgroundColor: theme === 'dark' ? '#1e1e1e' : 'white',
+                color: theme === 'dark' ? 'white' : '#333',
                 boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
                 borderRadius: '8px',
                 padding: '10px 20px',
@@ -155,9 +160,9 @@ const Navbar = () => {
                 gap: '10px',
                 zIndex: 100
               }}>
-                <Link to="/" style={{ textDecoration: 'none', color: '#333' }}>Log Out</Link>
-                <Link to="/about" style={{ textDecoration: 'none', color: '#333' }}>About</Link>
-                <Link to="/contact" style={{ textDecoration: 'none', color: '#333' }}>Contact</Link>
+                <Link to="/" style={{ textDecoration: 'none', color: theme === 'dark' ? 'white' : '#333' }}>Log Out</Link>
+                <Link to="/about" style={{ textDecoration: 'none', color: theme === 'dark' ? 'white' : '#333' }}>About</Link>
+                <Link to="/contact" style={{ textDecoration: 'none', color: theme === 'dark' ? 'white' : '#333' }}>Contact</Link>
               </div>
             )}
           </div>

@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
-import { useState } from 'react'; 
+import { useState, useEffect, createContext, useContext } from 'react'; 
 import Navbar from './Components/Navbar';
 import Home from './Pages/Home';
 import Contact from './Pages/Contact';
@@ -17,11 +17,24 @@ import Signup from './Pages/Signup'
 
 import './App.css';
 
+const ThemeContext = createContext();
+export const useTheme = () => useContext(ThemeContext);
+
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+  useEffect(() => {
+    document.body.className = theme === 'dark' ? 'dark-theme' : '';
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
 
   const handleLogin = () => {
     localStorage.setItem('isLoggedIn', 'true');
@@ -32,9 +45,10 @@ function App() {
   const isLoginPage = location.pathname === '/';
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      
-      {isLoggedIn && !isLoginPage && <Navbar />}
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        
+        {isLoggedIn && !isLoginPage && <Navbar />}
 
       <div style={{ flex: 1, width: '100%' }}>
         <Routes>
@@ -67,7 +81,8 @@ function App() {
       </div>
 
       {isLoggedIn && !isLoginPage && <Footer />}
-    </div>
+      </div>
+    </ThemeContext.Provider>
   );
 }
 

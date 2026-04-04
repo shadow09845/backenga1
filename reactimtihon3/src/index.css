@@ -1,0 +1,59 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --navbar-bg: #ffffff;
+  --card-bg: #ffffff;
+  --border-color: #e5e5e5;
+  --placeholder-color: rgba(0, 0, 0, 0.4);
+}
+
+.dark-theme {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --navbar-bg: #181818;
+  --card-bg: #1e1e1e;
+  --border-color: #333333;
+  --placeholder-color: rgba(255, 255, 255, 0.5);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body, body h1, body h2, body h3, body h4, body h5, body h6, body p, body a, body span, body label, body button, body input, body textarea, body select, body li {
+  color: var(--text-color);
+}
+
+.dark-theme body,
+.dark-theme body h1,
+.dark-theme body h2,
+.dark-theme body h3,
+.dark-theme body h4,
+.dark-theme body h5,
+.dark-theme body h6,
+.dark-theme body p,
+.dark-theme body a,
+.dark-theme body span,
+.dark-theme body label,
+.dark-theme body button,
+.dark-theme body input,
+.dark-theme body textarea,
+.dark-theme body select,
+.dark-theme body li {
+  color: var(--text-color);
+}
+
+.navbar {
+  background: var(--navbar-bg);
+  border-color: var(--border-color);
+}
+
+input::placeholder {
+  color: var(--placeholder-color);
+}
+
+.search-input::placeholder {
+  color: var(--placeholder-color);
+}

@@ -20,7 +20,9 @@ height: 145px;
 opacity: 1;
 text-align: center;
 align-items: center;
-border: 1px solid #0000004D;
+border: 1px solid rgba(0, 0, 0, 0.2);
+background: var(--card-bg);
+color: var(--text-color);
 }
 
 .card-box img {
@@ -73,7 +75,7 @@ border: 1px solid #0000004D;
 .section-title {
     font-size: 36px;
     font-weight: 600;
-    color: #000;
+    color: var(--text-color);
     margin: 0;
     letter-spacing: 0.04em;
 }
@@ -201,7 +203,8 @@ border: 1px solid #0000004D;
 
 .section {
   padding: 60px 0;
-  background-color: #fff;
+  background-color: var(--card-bg);
+  color: var(--text-color);
 }
 
 .container {

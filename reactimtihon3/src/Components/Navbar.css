@@ -1,8 +1,9 @@
 .navbar {
   width: 100%;
-  background: #fff;
-  border-bottom: 1px solid #e5e5e5;
+  background: var(--navbar-bg);
+  border-bottom: 1px solid var(--border-color);
   font-family: Arial, sans-serif;
+  transition: background 0.3s, border-color 0.3s;
 }
 
 .nav-container {
@@ -18,6 +19,18 @@
 .logo {
   font-size: 22px;
   font-weight: 700;
+  background: black;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.logo svg {
+  color: white;
 }
 
 .nav-links {
@@ -27,7 +40,7 @@
 
 .nav-links a {
   text-decoration: none;
-  color: #000;
+  color: var(--text-color);
   font-size: 14px;
   position: relative;
 }
@@ -39,34 +52,71 @@
   bottom: -6px;
   width: 100%;
   height: 2px;
-  background: #000;
+  background: var(--text-color);
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 18px;
+  justify-content: flex-end;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  background: black;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: default;
+  margin-left: 10px;
+}
+
+.theme-icon-button {
+  background: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.theme-icon-button:hover {
+  background: #333;
+}
+
+.logo svg {
+  color: white;
 }
 
 .search-box {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #f5f5f5;
+  background: var(--card-bg);
   padding: 6px 10px;
   border-radius: 4px;
+  border: 1px solid var(--border-color);
 }
 
 .search-box input {
   border: none;
   outline: none;
   background: transparent;
+  color: var(--text-color);
   font-size: 13px;
   width: 160px;
 }
 
 .search-box input::placeholder {
-  color: #888;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .icon {
@@ -94,7 +144,7 @@
 
 .car {
     padding: 40px;
-    background-color: #f8f9fa;
+    background-color: var(--card-bg);
     min-height: 100vh;
 }
 
@@ -247,8 +297,9 @@ justify-content: center;
 
 .category-sidebar {
     width: 500px;
-    border-right: 1px solid #e5e5e5;
+    border-right: 1px solid var(--border-color);
     padding-top: 10px;
+    background: var(--card-bg);
 }
 
 .category-sidebar ul {
@@ -260,7 +311,7 @@ justify-content: center;
 .category-sidebar li {
     padding: 12px 0;
     font-size: 16px;
-    color: #000;
+    color: var(--text-color);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -270,7 +321,7 @@ justify-content: center;
 
 .category-sidebar li span {
     font-size: 20px;
-    color: #555;
+    color: rgba(255, 255, 255, 0.65);
 }
 
 .category-sidebar li:hover {

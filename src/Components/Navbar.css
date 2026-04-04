@@ -1,8 +1,10 @@
 .navbar {
   width: 100%;
-  background: #fff;
-  border-bottom: 1px solid #e5e5e5;
+  background: var(--navbar-bg);
+  border-bottom: 1px solid var(--border-color);
   font-family: Arial, sans-serif;
+  color: var(--text-color);
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
 }
 
 .nav-container {
@@ -18,6 +20,24 @@
 .logo {
   font-size: 22px;
   font-weight: 700;
+  background: black;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo:hover {
+  background: #333;
+}
+
+.logo svg {
+  color: white;
 }
 
 .nav-links {
@@ -27,7 +47,7 @@
 
 .nav-links a {
   text-decoration: none;
-  color: #000;
+  color: var(--text-color);
   font-size: 14px;
   position: relative;
 }
@@ -39,7 +59,7 @@
   bottom: -6px;
   width: 100%;
   height: 2px;
-  background: #000;
+  background: var(--text-color);
 }
 
 .nav-actions {
@@ -52,9 +72,10 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #f5f5f5;
+  background: var(--card-bg);
   padding: 6px 10px;
   border-radius: 4px;
+  border: 1px solid var(--border-color);
 }
 
 .search-box input {
